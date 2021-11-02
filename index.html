@@ -18,7 +18,6 @@
         var bees;
         var updateTimer;
         var lastStingTime;
-        //document.addEventListener("keydown", initializeLongestDuration);
     </script>
     <body onload="start();"> 
 
@@ -28,7 +27,11 @@
             <p>You can adjust bees' speed <input type="text" id="speedBees" value="50" size="3"> px/ms
                 <br> the bear's speed <input type="text" id="speedBear", value="100", size="3"> px/ms
                 <br> and the refresh period <input type="text" id="periodTimer" value="10" size="3"> ms </p>
-            <p>Buttons: <button onclick="reset()">Restart</button> <button onclick="addBee()">Add Bee</button></p>
+            <p>Buttons: 
+                <button onclick="reset()">Restart</button> 
+                <button onclick="addBee()">Add Bee</button>
+                <button onclick="removeBee()">Remove Bee</button>
+            </p>
             <h2>Press left, right, up, down keys to move the bear</h2>
 
         </div>

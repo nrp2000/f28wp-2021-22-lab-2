@@ -7,6 +7,11 @@ function Bear() {
 
   this.move = function(xDir, yDir) {
     this.dBear = document.getElementById("speedBear").value;
+    if (isNaN(this.dBear)) {
+      window.alert("Invalid speed");
+      this.dBear = 100;
+      return;
+    }
     this.fitBounds(); // we add this instruction to keep the bear within the board
     this.x += this.dBear * xDir;
     this.y += this.dBear * yDir;
@@ -43,12 +48,12 @@ function start() {
   bees = new Array();
   //initialize longest duration on keydown
   document.addEventListener("keydown", initializeLongestDuration);
-  //create bees
   document.getElementById("nbBees").value = 1;
   document.getElementById("speedBees").value = 50;
   document.getElementById("periodTimer").value = 10;
   hits.innerHTML = 0;
   document.getElementById("duration").innerHTML = 0;
+  //create bees
   makeBees();
   updateBees();
 }
@@ -59,6 +64,7 @@ function initializeLongestDuration() {
 }
 
 function reset() {
+  clearTimeout(updateTimer);
   bear.x = 100;
   bear.y = 0;
   bear.display();
@@ -174,6 +180,14 @@ function addBee() {
   document.getElementById("nbBees").value++;
 }
 
+function removeBee() {
+  if (document.getElementById("nbBees").value <= 0) {
+    document.getElementById("nbBees").value = 0;
+  } else {
+    document.getElementById("nbBees").value--;
+  }
+}
+
 function makeBees() {
   //store the length of the bees array
   var beesLength = bees.length;
@@ -210,7 +224,7 @@ function moveBees() {
   //get speed input field value
   let speed = document.getElementById("speedBees").value;
   if (isNaN(speed)) {
-    window.alert("Invalid speed");
+    window.alert("Invalid Speed");
     document.getElementById("speedBees").value = 50;
     return;
   }
@@ -224,6 +238,15 @@ function moveBees() {
 }
 
 function updateBees() { // update loop for game
+  // additional check to see if the 
+  if (isNaN(document.getElementById("speedBear").value)) {
+    window.alert("Invalid Speed");
+    document.getElementById("speedBear").value = 100;
+  }
+  if (isNaN(document.getElementById("periodTimer").value)) {
+    window.alert("Invalid Period");
+    document.getElementById("periodTimer").value = 10;
+  }
   //creates new bees or removes extra bees if the value is changed
   makeBees();
   //move the bees randomly
