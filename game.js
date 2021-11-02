@@ -6,6 +6,7 @@ function Bear() {
   this.y = this.htmlElement.offsetTop;
 
   this.move = function(xDir, yDir) {
+    this.dBear = document.getElementById("speedBear").value;
     this.fitBounds(); // we add this instruction to keep the bear within the board
     this.x += this.dBear * xDir;
     this.y += this.dBear * yDir;
@@ -65,6 +66,7 @@ function reset() {
   document.addEventListener("keydown", initializeLongestDuration);
   document.getElementById("nbBees").value = 1;
   document.getElementById("speedBees").value = 50;
+  document.getElementById("speedBear").value = 100;
   document.getElementById("periodTimer").value = 10;
   hits.innerHTML = 0;
   document.getElementById("duration").innerHTML = 0;
